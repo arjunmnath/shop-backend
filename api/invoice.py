@@ -2,7 +2,7 @@ from io import BytesIO
 from logging import root
 from reportlab.pdfgen import canvas
 import json
-from utlis import qrgen
+from api.utlis import qrgen
 from datetime import datetime
 from num2words import num2words
 
