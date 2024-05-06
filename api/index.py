@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request, jsonify, Response
 
 import api.validators as validators
@@ -74,5 +76,8 @@ def getproducts():
         return jsonify({'msg': "Internal Server Error"}), 500
 
 
+@app.get("/")
+def geturi():
+        return os.getenv("MONGODB_URI")
 # if __name__ == "__main__":
 #     app.run(port=8000, debug=True)
