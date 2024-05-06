@@ -78,6 +78,6 @@ def getproducts():
 
 @app.get("/")
 def geturi():
-        return os.getenv("MONGODB_URI")
+    return jsonify({'data': os.getenv("MONGODB_URI")})
 # if __name__ == "__main__":
 #     app.run(port=8000, debug=True)
