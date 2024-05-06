@@ -1,9 +1,10 @@
 from flask import Flask, request, jsonify, Response
-from invoice import invoicegen
+
+import api.validators as validators
+from api.invoice import invoicegen
 from os import getenv
-from utlis import DBHandle
+from api.utlis import DBHandle
 import logging
-import validators
 import traceback
 
 

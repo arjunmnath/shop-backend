@@ -3,7 +3,7 @@ import os
 import qrcode
 from pydantic import ValidationError 
 from pymongo import MongoClient
-import models
+import api.models as models
 
 
 def normalize(i):
