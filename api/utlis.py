@@ -1,3 +1,5 @@
+import os
+
 import qrcode
 from pydantic import ValidationError 
 from pymongo import MongoClient
@@ -11,8 +13,9 @@ def normalize(i):
 
 class DBHandle:
     def __init__(self): 
-        uri = ("mongodb+srv://arjunmnath:muwn537OicYJlw4O@shopapp.4n0kofc.mongodb.net/?retryWrites=true&w=majority"
-               "&appName=shopapp")
+        uri = os.getenv("MONGODB_URI") 
+        # uri = ("mongodb+srv://arjunmnath:muwn537OicYJlw4O@shopapp.4n0kofc.mongodb.net/?retryWrites=true&w=majority"
+        #        "&appName=shopapp")
         self.client = MongoClient(uri)
         self.db = self.client.get_database("shopapp")
         self.Products = models.Products
