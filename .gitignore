@@ -3,6 +3,8 @@
 *.pyc
 __pycache__
 
+node_modules/
+package-lock.json
 # Environments 
 .env 
 .venv 
