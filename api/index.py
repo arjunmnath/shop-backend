@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, Response
 
 import api.validators as validators
-from api.invoice import invoicegen
+# from api.invoice import invoicegen
 from os import getenv
 from api.utlis import DBHandle
 import logging
@@ -25,11 +25,11 @@ def pdfgen():
         # if not validate_payload(payload):
         #     return jsonify({"msg": "Bad Request"}), 400
         print(payload)
-        file = invoicegen(
-            payload['items'],
-            "arjun",
-            "908090090",
-        )
+        # file = invoicegen(
+        #     payload['items'],
+        #     "arjun",
+        #     "908090090",
+        # )
     except KeyError as e:
         return jsonify({"msg": "Bad Request" + str(e)}), 400
     return Response(file, mimetype="application/pdf", headers={"Content-Disposition": "attachment;filename=report.pdf"})
