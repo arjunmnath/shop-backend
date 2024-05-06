@@ -4,16 +4,12 @@ import api.validators as validators
 # from api.invoice import invoicegen
 from os import getenv
 from api.utlis import DBHandle
-import logging
 import traceback
 
 
 
 app = Flask(__name__)
-app.logger.setLevel(logging.DEBUG)
-file_handler = logging.FileHandler('flask.log')
-file_handler.setLevel(logging.DEBUG)
-app.logger.addHandler(file_handler)
+
 
 db = DBHandle()
 
@@ -32,7 +28,7 @@ def pdfgen():
         # )
     except KeyError as e:
         return jsonify({"msg": "Bad Request" + str(e)}), 400
-    return Response(file, mimetype="application/pdf", headers={"Content-Disposition": "attachment;filename=report.pdf"})
+    return Response({}, mimetype="application/pdf", headers={"Content-Disposition": "attachment;filename=report.pdf"})
 
 @app.post('/customer')
 def addcustomer():
