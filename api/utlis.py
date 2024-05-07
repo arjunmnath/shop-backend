@@ -13,7 +13,7 @@ def normalize(i):
 
 class DBHandle:
     def __init__(self): 
-        uri = os.getenv("MONGODB_URI") 
+        uri = os.getenv("MONGODB_URI")
         # uri = ("mongodb+srv://arjunmnath:muwn537OicYJlw4O@shopapp.j56wat8.mongodb.net/?retryWrites=true&w=majority"
         #        "&appName=shopapp")
         self.client = MongoClient(uri)

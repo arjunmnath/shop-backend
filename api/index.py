@@ -3,16 +3,14 @@ import os
 from flask import Flask, request, jsonify, Response
 
 import api.validators as validators
+from api.middleware import Middleware
 # from api.invoice import invoicegen
-from os import getenv
 from api.utlis import DBHandle
 import traceback
 
 
-
 app = Flask(__name__)
-
-
+app.wsgi_app = Middleware(app.wsgi_app)
 db = DBHandle()
 
 
@@ -31,6 +29,7 @@ def pdfgen():
     except KeyError as e:
         return jsonify({"msg": "Bad Request" + str(e)}), 400
     return Response({}, mimetype="application/pdf", headers={"Content-Disposition": "attachment;filename=report.pdf"})
+
 
 @app.post('/customer')
 def addcustomer():
@@ -79,5 +78,3 @@ def getproducts():
 @app.get("/")
 def geturi():
     return jsonify({'data': os.getenv("MONGODB_URI")})
-# if __name__ == "__main__":
-#     app.run(port=8000, debug=True)
