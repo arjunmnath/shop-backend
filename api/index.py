@@ -42,7 +42,7 @@ def addcustomer():
         return jsonify({'msg': 'ok'}), 200
     except Exception as e:
         print(traceback.format_exc())
-        return jsonify({'msg': "Internal Server Error"}), 500
+        return jsonify({'msg': "Internal Server Error" + repr(e)}), 500
 
 
 @app.get("/customer")
@@ -51,7 +51,7 @@ def getcustomers():
         products = db.get_documents("customers")
         return jsonify({'data': products})
     except Exception as e:
-        return jsonify({'msg': "Internal Server Error"}), 500
+        return jsonify({'msg': "Internal Server Error" + repr(e)}), 500
 
 
 @app.post("/product")
@@ -63,7 +63,7 @@ def addproduct():
         db.add_document(payload, "products", db.Products)
         return jsonify({'msg': 'ok'}), 200
     except Exception as e:
-        return jsonify({'msg': "Internal Server Error"}), 500
+        return jsonify({'msg': "Internal Server Error" + repr(e)}), 500
 
 
 @app.get("/product")
@@ -72,9 +72,6 @@ def getproducts():
         products = db.get_documents("products")
         return jsonify({'data': products})
     except Exception as e:
-        return jsonify({'msg': "Internal Server Error"}), 500
+        return jsonify({'msg': "Internal Server Error" +repr(e)}), 500
 
 
-@app.get("/")
-def geturi():
-    return jsonify({'data': os.getenv("MONGODB_URI")})
