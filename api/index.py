@@ -50,7 +50,7 @@ def addproduct():
         db.add_document(payload, "products", db.Products)
         return jsonify({'msg': 'ok'}), 200
     except Exception as e:
-        return jsonify({'msg': "Internal Server Error" + repr(e)}+ " " + traceback.format_exc()), 500
+        return jsonify({'msg': "Internal Server Error" + repr(e)+ " " + traceback.format_exc()}), 500
 
 
 @app.post('/customer')
