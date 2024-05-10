@@ -10,6 +10,12 @@ def normalize(i):
     i['_id'] = str(i['_id'])
     return i
 
+class MultiDict(dict):
+    def getlist(self, key):
+        return self[key] if type(self[key]) == list else [self[key]]
+
+    def __repr__(self):
+        return type(self).__name__ + '(' + dict.__repr__(self) + ')'
 
 class DBHandle:
     def __init__(self): 

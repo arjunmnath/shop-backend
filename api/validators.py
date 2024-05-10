@@ -1,5 +1,5 @@
 from wtforms import Form, IntegerField, DecimalField, StringField, SelectField, BooleanField, validators
-
+from api.utlis import MultiDict
 class ItemForm(Form):
     itemCode = IntegerField("Item Code", validators=[validators.DataRequired(), validators.NumberRange(min=1)])
     qty = IntegerField("Quantity", validators=[validators.DataRequired(), validators.NumberRange(min=1)])
@@ -54,7 +54,7 @@ def sales (data):
    
 def customer(data:dict):
     try:
-        form = CustomerForm(data)
+        form = CustomerForm(MultiDict(data))
         if not form.validate():
             return False
         for address in data['addresses']:
@@ -68,7 +68,7 @@ def customer(data:dict):
     
     
 def product(data: dict):
-    out = ProductForm(data)
+    out = ProductForm(MultiDict(data))
     if not out.validate():
         return False
     return True

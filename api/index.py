@@ -38,7 +38,7 @@ def getcustomers():
         products = db.get_documents("customers")
         return jsonify({'data': products})
     except Exception as e:
-        return jsonify({'msg': "Internal Server Error" + repr(e)}), 500
+        return jsonify({'msg': "Internal Server Error"}), 500
 
 
 @app.post("/product")
@@ -50,7 +50,7 @@ def addproduct():
         db.add_document(payload, "products", db.Products)
         return jsonify({'msg': 'ok'}), 200
     except Exception as e:
-        return jsonify({'msg': "Internal Server Error" + repr(e)+ " " + traceback.format_exc()}), 500
+        return jsonify({'msg': "Internal Server Error"}), 500
 
 
 @app.post('/customer')
@@ -62,7 +62,7 @@ def addcustomer():
         db.add_document(payload, "customers", db.Customer)
         return jsonify({'msg': 'ok'}), 200
     except Exception as e:
-        return jsonify({'msg': "Internal Server Error" + repr(e)}), 500
+        return jsonify({'msg': "Internal Server Error"}), 500
 
 
 @app.get("/product")
@@ -71,6 +71,4 @@ def getproducts():
         products = db.get_documents("products")
         return jsonify({'data': products})
     except Exception as e:
-        return jsonify({'msg': "Internal Server Error" +repr(e)}), 500
-
-
+        return jsonify({'msg': "Internal Server Error"}), 500
