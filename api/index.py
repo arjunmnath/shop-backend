@@ -31,19 +31,6 @@ def pdfgen():
     return Response({}, mimetype="application/pdf", headers={"Content-Disposition": "attachment;filename=report.pdf"})
 
 
-@app.post('/customer')
-def addcustomer():
-    try:
-        payload = request.get_json()
-        print(payload)
-        if not validators.customer(payload):
-            return jsonify({'msg': "Bad Request"}), 400
-        db.add_document(payload, "customers", db.Customer)
-        return jsonify({'msg': 'ok'}), 200
-    except Exception as e:
-        print(traceback.format_exc())
-        return jsonify({'msg': "Internal Server Error" + repr(e)}), 500
-
 
 @app.get("/customer")
 def getcustomers():
@@ -61,6 +48,18 @@ def addproduct():
         if not validators.product(payload):
             return jsonify({'msg': "Bad Request"}), 400
         db.add_document(payload, "products", db.Products)
+        return jsonify({'msg': 'ok'}), 200
+    except Exception as e:
+        return jsonify({'msg': "Internal Server Error" + repr(e)}+ " " + traceback.format_exc()), 500
+
+
+@app.post('/customer')
+def addcustomer():
+    try:
+        payload = request.get_json()
+        if not validators.customer(payload):
+            return jsonify({'msg': "Bad Request"}), 400
+        db.add_document(payload, "customers", db.Customer)
         return jsonify({'msg': 'ok'}), 200
     except Exception as e:
         return jsonify({'msg': "Internal Server Error" + repr(e)}), 500
