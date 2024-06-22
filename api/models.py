@@ -1,6 +1,6 @@
 from __future__ import annotations
 from typing import List
-from pydantic import EmailStr, Field, BaseModel, validator, ValidationError
+from pydantic import EmailStr, Field, BaseModel 
 from datetime import datetime
 from bson import ObjectId
 
@@ -19,6 +19,7 @@ class ObjectIdStr(str):
         except Exception as e:
             raise ValueError(f'Invalid ObjectId: {e}')
         return v
+
 
 class Customer(BaseModel):
     name: str = Field(default="")

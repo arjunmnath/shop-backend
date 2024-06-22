@@ -20,6 +20,6 @@ class Middleware:
             res = Response(u'Authorization failed', mimetype='text/plain', status=401)
             return res(environ, start_response)
         except Exception as e:
-            res = Response(u'Internal Error', mimetype='text/plain', status=500)
+            res = Response(u'Authorization required', mimetype='text/plain', status=500)
             return res(environ, start_response)            
         

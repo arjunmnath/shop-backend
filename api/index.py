@@ -72,3 +72,13 @@ def getproducts():
         return jsonify({'data': products})
     except Exception as e:
         return jsonify({'msg': "Internal Server Error"}), 500
+
+
+@app.post('sale')
+def addSale():
+    try:
+        payload = request.get_json()
+        if validators.sales(payload):
+            pass
+    except Exception as e:
+        return jsonify({'msg': "Internal Server Error"}), 500

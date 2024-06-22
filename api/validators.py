@@ -14,6 +14,8 @@ class SalesForm(Form):
     hasLoadingFee = BooleanField("Has Loading Fee", validators=[validators.DataRequired()])
     terms = SelectField("Terms", choices=["UPI", "CASH", "CREDIT"], validators=[validators.DataRequired()])
     transactionId = StringField("TransactionId")
+    clientId = StringField("ClientId", validators=[validators.DataRequired()])
+    vehicleNo = StringField("Vehicle No", validators=[validators.DataRequired()])
 
 
 class ProductForm(Form):
