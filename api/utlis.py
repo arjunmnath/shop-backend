@@ -20,8 +20,6 @@ class MultiDict(dict):
 class DBHandle:
     def __init__(self): 
         uri = os.getenv("MONGODB_URI")
-        # uri = ("mongodb+srv://arjunmnath:muwn537OicYJlw4O@shopapp.j56wat8.mongodb.net/?retryWrites=true&w=majority"
-        #        "&appName=shopapp")
         self.client = MongoClient(uri)
         self.db = self.client.get_database("shopapp")
         self.Products = models.Products
